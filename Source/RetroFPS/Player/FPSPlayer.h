@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "RetroFPS/Door/Door.h"
 #include "FPSPlayer.generated.h"
 
 class UInputMappingContext;
@@ -40,6 +41,15 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	class UInputAction* InteractAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	class UInputAction* SprintAction;
+
 public:
 	// Sets default values for this character's properties
 	AFPSPlayer();
@@ -64,4 +74,22 @@ public:
 	void MoveLeft(const FInputActionValue& InputValue);
 
 	void Look(const FInputActionValue& InputValue);
+
+	void Interact();
+	void StartSprint();
+	void StopSprint();
+
+	/** Movement Speed */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float WalkSpeed = 600.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float SprintSpeed = 1200.0f;
+
+	UPROPERTY(EditAnywhere)
+	float InteractLineTraceLength = 350.f;
+
+	// Current interactable object
+	UPROPERTY()
+	ADoor* CurrentInteractable;
 };

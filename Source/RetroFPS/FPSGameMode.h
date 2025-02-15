@@ -13,5 +13,5 @@ UCLASS()
 class RETROFPS_API AFPSGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
 };
