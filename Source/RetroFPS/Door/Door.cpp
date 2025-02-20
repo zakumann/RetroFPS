@@ -9,9 +9,11 @@ ADoor::ADoor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+    DoorFrame = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorFrame"));
+    DoorFrame->SetupAttachment(RootComponent);
 
 	Door = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Door"));
-	Door->SetupAttachment(RootComponent);
+	Door->SetupAttachment(DoorFrame);
 }
 
 // Called when the game starts or when spawned

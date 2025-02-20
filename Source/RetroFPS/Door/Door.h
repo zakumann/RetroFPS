@@ -30,6 +30,9 @@ public:
 
 private:
     UPROPERTY(VisibleAnywhere, Category = "Mesh")
+    class UStaticMeshComponent* DoorFrame;
+
+    UPROPERTY(VisibleAnywhere, Category = "Mesh")
     class UStaticMeshComponent* Door;
 
 protected:
