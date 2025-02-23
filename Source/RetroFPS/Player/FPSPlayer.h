@@ -50,6 +50,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
 	class UInputAction* SprintAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enhanced Input", meta = (AllowPrivateAccess = "true"))
+	class UInputAction* FireAction;
+
+
+
 public:
 	// Sets default values for this character's properties
 	AFPSPlayer();
@@ -74,6 +79,8 @@ public:
 	void MoveLeft(const FInputActionValue& InputValue);
 
 	void Look(const FInputActionValue& InputValue);
+
+	void Fire();
 
 	void Interact();
 	void StartSprint();

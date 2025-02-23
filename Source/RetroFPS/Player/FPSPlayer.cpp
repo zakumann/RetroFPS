@@ -17,11 +17,17 @@
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
 
+//Fire
+#include "Kismet/KismetSystemLibrary.h" 
+#include "DrawDebugHelpers.h"
+
 // Sets default values
 AFPSPlayer::AFPSPlayer()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
 	// Configure character movement
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
@@ -90,6 +96,9 @@ void AFPSPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 		//Interact
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AFPSPlayer::Interact);
+
+		//Fire
+		EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Triggered, this, &AFPSPlayer::Fire);
 	}
 }
 
@@ -147,6 +156,11 @@ void AFPSPlayer::Look(const FInputActionValue& InputValue)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AFPSPlayer::Fire()
+{
+
 }
 
 void AFPSPlayer::Interact()
